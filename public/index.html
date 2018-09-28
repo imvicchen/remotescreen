@@ -4,7 +4,7 @@
     <title>Remote Assist Demo (Client)</title>
     <link rel="stylesheet" href="lib/css/bootstrap.min.css">
     <link rel="stylesheet" href="lib/css/client.css">
-    
+    <link rel="stylesheet" href="lib/css/screenshare.css">
 </head>
 <body>
 <div class="navbar navbar-inverse navbar-fixed-top">
@@ -122,9 +122,45 @@
         </div>
     </div>
 </div>
+<table id="MenuTable" cellpadding="0">
+    <tr>
+    <td><div id="SlideMenu"><p class="rotate">HELP</p></div></td>
+    <td id="MainMenuTD"><h3>Remote Assistance</h3>
+    <p id="RemoteAssistMessage">To Start a remote session, please create a key and provide it to the representative assisting you. Keys should be between 6 and 10 characters.</p>
+    <input id="SessionKey"><p id="RemoteStatus">Status: Disconnected</p>
+    <a class="btn" style="width: 70%" onclick="wx.CreateSession(document.getElementById('SessionKey').value);">Create Key</a>
+    </td>
+    </tr>
+</table>
 <script type="text/javascript" src="lib/js/jquery.js"></script>
 <script type="text/javascript" src="lib/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="lib/js/client.js"></script>
-<script type="text/javascript" src="lib/js/screenshare.js"></script>
+<script type="text/javascript" src="lib/js/wxhelp.js"></script>
+<script type="text/javascript">
+var wx = null;
+window.onload=function(){
+    SetMenu();
+    wx = new WxHelp();
+    wx.StartMirroring();
+}
+
+$(window).resize(function() {
+    $('#MenuTable').css({left: ($(window).width() - 30), top: ($(window).height()/2) - 150});
+});
+function SetMenu(){
+    $('#MenuTable').css({left: $(window).width() - 30, top: ($(window).height()/2) - 150});
+    $('#SlideMenu').mouseenter(function(){
+        if($('#MenuTable').offset().left == $(window).width() -30){
+            $('#MenuTable').animate({left:'-=' + ($('#MenuTable').width() - 30)},'fast');
+        }
+    });
+    $('#MenuTable').mouseleave(function(){
+        if($(this).offset().left == $(window).width() - $('#MenuTable').width()){
+            $(this).animate({left:'+=' + ($('#MenuTable').width() - 30)},'fast');
+        }
+    });
+}
+</script>
+<!--<script type="text/javascript" src="lib/js/screenshare.js"></script>-->
 </body>
 </html>

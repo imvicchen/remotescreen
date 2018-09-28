@@ -1,8 +1,8 @@
 var socket = undefined;
 var SessionKey;
 var oDOM;
-var CDN = 'http://192.168.1.16:3000/';
-var SocketCDN = 'http://192.168.1.16:3001/'
+var CDN = 'http://192.168.1.31:3000/';
+var SocketCDN = 'http://192.168.1.31:3001/'
 
 
 /* This block of code is to load inaccessible scripts that may be relative on mobile devices or behind a VPN or restricted network
@@ -104,6 +104,7 @@ function init(){
 }
 
 function socketSend(msg) {
+    debugger
     socket.emit('changeHappened', {change: msg, room: sessvars.Session});
 }
 

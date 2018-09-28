@@ -81,8 +81,10 @@ TreeMirror.prototype = {
 
   applyChanged: function(removed, addedOrMoved, attributes, text) {
     function removeNode(node) {
-      if (node.parentNode)
+      if(node){
+        if (node.parentNode)
         node.parentNode.removeChild(node);
+      }
     }
 
     function moveOrInsertNode(data) {

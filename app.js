@@ -26,7 +26,7 @@ io.sockets.on('connection', function(socket) {
         io.sockets.in(msg).emit('SessionStarted', '');
     });
     socket.on('ClientMousePosition', function(msg){
-        socket.broadcast.to(socket.room).emit('ClientMousePosition', {PositionLeft:msg.PositionLeft, PositionTop:msg.PositionTop});
+        socket.broadcast.to(msg.room).emit('ClientMousePosition', {PositionLeft:msg.PositionLeft, PositionTop:msg.PositionTop});
     });
     socket.on('AdminMousePosition', function(msg){
         socket.broadcast.to(msg.room).emit('AdminMousePosition', {PositionLeft:msg.PositionLeft, PositionTop:msg.PositionTop});

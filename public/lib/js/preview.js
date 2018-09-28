@@ -1,4 +1,4 @@
-var socket = io.connect('http://192.168.1.16:3001');
+var socket = io.connect('http://192.168.1.31:3001');
 var SessionKey;
 function SendMouse(){
     document.onmousemove = function(e) {
